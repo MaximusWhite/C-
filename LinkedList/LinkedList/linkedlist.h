@@ -173,11 +173,6 @@ operator +(int data){
 
 }
 
-operator =(int n){
-
-
-}
-
 operator --(int){
 
     removeLast();

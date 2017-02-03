@@ -1,7 +1,10 @@
 # depslib dependency file v1.0
-1485403740 source:c:\users\mikef\documents\projects\c++\linkedlist\linkedlist\main.cpp
+1486059816 source:c:\users\mikef\documents\projects\c++\linkedlist\linkedlist\main.cpp
 	<iostream>
 	<stdlib.h>
-	<stdio.h>
 	<time.h>
+	"linkedlist.h"
+
+1486096426 c:\users\mikef\documents\projects\c++\linkedlist\linkedlist\linkedlist.h
+	<stdio.h>
 
