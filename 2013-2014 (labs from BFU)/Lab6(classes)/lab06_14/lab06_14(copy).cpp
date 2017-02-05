@@ -1,4 +1,4 @@
-// lab06_14.cpp: юяЁхфхы хЄ Єюўъє тїюфр фы  ъюэёюы№эюую яЁшыюцхэш .
+// lab06_14.cpp: определяет точку входа для консольного приложения.
 //
 
 #include "stdafx.h"
@@ -9,19 +9,19 @@
 
 using namespace std;
 
-class HomeLibrary{   // ъырёё фюьр°эхщ сшсышюЄхъш   
+class HomeLibrary{   // класс домашней библиотеки   
 
-private:     // ЇєэъЎшш ш яюы  фюёЄєяэ√х Єюы№ъю тэєЄЁш ъырёёр
-	struct book{     // юяшё√трхь ёЄЁєъЄєЁє юфэюую ¤ъчхьяы Ёр ъэшуш
-		string name; // эрчтрэшх 
-		string author; // ртЄюЁ
-		int date;    // фрЄр яєсышърЎшш
+private:     // функции и поля доступные только внутри класса
+	struct book{     // описываем структуру одного экземпляра книги
+		string name; // название 
+		string author; // автор
+		int date;    // дата публикации
 	};
-	book books[100];   // ьрёёшт ёЄЁєъЄєЁ ъэшу
-    int count;       // шэфхъё ъэшуш ё ъюЄюЁющ ЁрсюЄрхь
-public:    // ЇєэъЎшш ш яюы  фюёЄєяэ√х ёэрЁєцш
+	book books[100];   // массив структур книг
+    int count;       // индекс книги с которой работаем
+public:    // функции и поля доступные снаружи
 
-void readinput(){    // ёўшЄ√трхь фрээ√х ё Їрщыр т ьрёёшт ёЄЁєъЄєЁ ъэшу ъырёёр
+void readinput(){    // считываем данные с файла в массив структур книг класса
 		string S;
 		ifstream file("input.txt");
 		while (file){
@@ -33,114 +33,114 @@ void readinput(){    // ёўшЄ√трхь фрээ√х ё Їрщыр т ьрёёшт ёЄЁєъЄєЁ ъэшу ъырёёр
 		}
 		count--;
 	}
-void set_count_books(int p){ count = p; }   // чрфр╕ь шэфхъё ъэшуш ё ъюЄюЁющ ЁрсюЄрхь
+void set_count_books(int p){ count = p; }   // задаём индекс книги с которой работаем
 
-int get_count_books(){ return count; }      // тючтЁр∙рхЄ ¤ЄюЄ шэфхъё яЁш юсЁр∙хэшш ёэрЁєцш
+int get_count_books(){ return count; }      // возвращает этот индекс при обращении снаружи
 
-void add_book(){          // яЁюЎхфєЁр фюсртыхэш  ъэшуш т ъырёё сшсышюЄхъш
+void add_book(){          // процедура добавления книги в класс библиотеки
 	//char name_tmp[100], author_tmp[100];
 	//int date_tmp;
-	cout << "═рчтрэшх: ";
+	cout << "Название: ";
 	cin >> books[count].name;
-	cout << "└тЄюЁ: ";
+	cout << "Автор: ";
 	cin >> books[count].author;
-	cout << "─рЄр яєсышърЎшш: ";
+	cout << "Дата публикации: ";
 	cin >> books[count].date;
 	count++;
-	cout << "╩эшур фюсртыхэр.";			
+	cout << "Книга добавлена.";			
 	}
 
-void show_books(){     // т√тюф сшсышюЄхъш эр ¤ъЁрэ
+void show_books(){     // вывод библиотеки на экран
 		for (int i = 0; i<count; i++){
-			cout << i + 1<<"--------------------------------"<<endl<< "═рчтрэшх: " << books[i].name <<endl<< "└тЄюЁ:" << books[i].author <<endl<< "─рЄр яєсышърЎшш: " << books[i].date <<endl;
+			cout << i + 1<<"--------------------------------"<<endl<< "Название: " << books[i].name <<endl<< "Автор:" << books[i].author <<endl<< "Дата публикации: " << books[i].date <<endl;
 		}
 	}
-void sort_dates(){     // ёюЁЄшЁютър яю фрЄх яєсышърЎшш
+void sort_dates(){     // сортировка по дате публикации
 		for (int i = 0; i<count - 1; i++){
 			for (int j = i + 1; j<count; j++)
 			if (books[i].date>books[j].date) swap(books[i], books[j]);
 		}
-		cout << "╨хчєы№ЄрЄ:" << endl;
+		cout << "Результат:" << endl;
 		show_books();
 	}
 
-void sort_name(){      // ёюЁЄшЁютър яю эрчтрэш■
+void sort_name(){      // сортировка по названию
 		for (int i = 0; i<count - 1; i++){
 			for (int j = i + 1; j<count; j++)
 			if (books[i].name > books[j].name) swap (books[i], books[j]);
 		}
-		cout << "╨хчєы№ЄрЄ:" << endl;
+		cout << "Результат:" << endl;
 		show_books();
 	}
 
-void sort_author(){   // ёюЁЄшЁютър яю ртЄюЁє
+void sort_author(){   // сортировка по автору
 		for (int i = 0; i<count - 1; i++){
 			for (int j = i + 1; j<count; j++)
 			if (books[i].author > books[j].author) swap (books[i], books[j]);
 		}
-		cout << "╨хчєы№ЄрЄ:" << endl;
+		cout << "Результат:" << endl;
 		show_books();
 	}
 
 	
-void delete_book(int k){  // єфрыхэшх ъэшуш шч сшсышюЄхъш
+void delete_book(int k){  // удаление книги из библиотеки
 		k--;
 		for (int i = k; i<count - 1; i++){
 			books[i] = books[i + 1];
 		}
 		count--;
-		cout << "╩эшур єфрыхэр.";
+		cout << "Книга удалена.";
 	}
 
 };
 
-HomeLibrary library;    // ёючфр╕ь яхЁхьхээє■ юяшёрээюую эрьш ъырёёр
+HomeLibrary library;    // создаём переменную описанного нами класса
 
-void Work(){     // юёэютэр  яЁюЎхфєЁр фхщёЄтшщ
-	cout << "   ╠хэ■" << endl;    // т√тюфшь ьхэ■
-	cout << "1 ─юсртшЄ№ ъэшує" << endl;
-	cout << "2 ╧ЁюёьюЄЁ сшсышюЄхъш" << endl;
-	cout << "3 ╙фрышЄ№ ъэшує" << endl;
-	cout << "4 ╤юЁЄшЁютър ъэшу яю эрчтрэш■ (яю рыЇртшЄє):" << endl;
-	cout << "5 ╤юЁЄшЁютър ъэшу яю фрЄх яєсышърЎшш (яю тючЁрёЄрэш■):" << endl;
-	cout << "6 ╤юЁЄшЁютър ъэшу яю ртЄюЁє (яю рыЇртшЄє):" << endl;
-	cout << "7 ┬√їюф" << endl;
+void Work(){     // основная процедура действий
+	cout << "   Меню" << endl;    // выводим меню
+	cout << "1 Добавить книгу" << endl;
+	cout << "2 Просмотр библиотеки" << endl;
+	cout << "3 Удалить книгу" << endl;
+	cout << "4 Сортировка книг по названию (по алфавиту):" << endl;
+	cout << "5 Сортировка книг по дате публикации (по возрастанию):" << endl;
+	cout << "6 Сортировка книг по автору (по алфавиту):" << endl;
+	cout << "7 Выход" << endl;
 	int t, k;
-	cin >> t;  // ёўшЄ√трхь трЁшрэЄ ттхф╕ээ√щ яюы№чютрЄхыхь
-	switch (t){   // ёьюЄЁшь ўЄю с√ыю ттхфхэю
-	case 1: {    // хёыш ттхфхэю 1, Єю
-				library.add_book();   // т яхЁхьхээющ ъырёёр сшсышюЄхъш т√ч√трхь яЁюЎхфєЁє фюсртыхэш  ъэшуш
+	cin >> t;  // считываем вариант введённый пользователем
+	switch (t){   // смотрим что было введено
+	case 1: {    // если введено 1, то
+				library.add_book();   // в переменной класса библиотеки вызываем процедуру добавления книги
 				cout << endl << endl;
-				Work();    // х∙╕ Ёрч т√ч√трхь ьхэ■
+				Work();    // ещё раз вызываем меню
 	}
-	case 2:{   // рэрыюушўэю
-			   library.show_books();  // т√ч√трхь яЁюЎхфєЁє т√тюфр сшсышюЄхъш эр ¤ъЁрэ
+	case 2:{   // аналогично
+			   library.show_books();  // вызываем процедуру вывода библиотеки на экран
 			   cout << endl << endl;
 			   Work();
 	}
 	case 3:{
-			   cout << "┬√схЁшЄх эюьхЁ";
+			   cout << "Выберите номер";
 			   cin >> k;
-			   library.delete_book(k);    // єфры хь ъэшує яюф ттхф╕ээ√ь эюьхЁюь
+			   library.delete_book(k);    // удаляем книгу под введённым номером
 			   cout << endl << endl;
 			   Work();
 	}
 	case 4:{
-			   library.sort_name();      // ёюЁЄшЁєхь яю эрчтрэш■
+			   library.sort_name();      // сортируем по названию
 			   cout << endl << endl;
 			   Work();
 	}
 	case 5:{
-			   library.sort_dates();     // ёюЁЄшЁєхь яю фрЄх яєсышърЎшш
+			   library.sort_dates();     // сортируем по дате публикации
 			   cout << endl << endl;
 			   Work();
 	}
     case 6:{
-			   library.sort_author();   // ёюЁЄшЁєхь яю ртЄюЁє
+			   library.sort_author();   // сортируем по автору
 			   cout << endl << endl;
 			   Work();
 	}
-	case 7:exit(0);          // т√їюфшь яЁш т√сюЁх 7
+	case 7:exit(0);          // выходим при выборе 7
 	default: break;
 	}
 }
@@ -150,9 +150,9 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 
 setlocale(LC_ALL, "Russian");
-	library.set_count_books(0);   // чрфр╕ь яхЁхьхээє■ count т яхЁхьхээющ ъырёёр сшсышюЄхъш Ёртэ√ь эєы■
-	library.readinput();     // ёўшЄ√трхь фрээ√х ё Їрщыр т ёючфрээє■ сшсышюЄхъє
-	Work();    // т√тюфшь ьхэ■ ш Є.ф.
+	library.set_count_books(0);   // задаём переменную count в переменной класса библиотеки равным нулю
+	library.readinput();     // считываем данные с файла в созданную библиотеку
+	Work();    // выводим меню и т.д.
 
 	return 0;
 
