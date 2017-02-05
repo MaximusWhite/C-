@@ -155,5 +155,7 @@ setlocale(LC_ALL, "Russian");
 	Work();    // выводим меню и т.д.
 
 	return 0;
+
+	   //
 }
 
